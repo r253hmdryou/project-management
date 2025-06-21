@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "@fastly/js-compute": "^3.33.2",
+    "@prisma/client": "^6.10.1",
     "hono": "^4.8.2"
   },
   "devDependencies": {
     "@fastly/cli": "^11.0.0",
-    "esbuild": "^0.25.1"
+    "esbuild": "^0.25.1",
+    "prisma": "^6.10.1"
   }
 }
