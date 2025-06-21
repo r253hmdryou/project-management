@@ -1,5 +1,7 @@
 import { Hono } from "hono/quick";
 import { PrismaClient } from "@prisma/client";
+import { z } from "zod";
+import { v4 } from "uuid";
 
 const app = new Hono();
 const prisma = new PrismaClient();
@@ -17,6 +19,22 @@ app.get("/projects", async (c) => {
     },
   });
   return c.json(projects);
+});
+
+app.post("/projects", async (c) => {
+  const schema = z.object({
+    name: z.string().min(1),
+    instruction: z.string().default(""),
+  });
+  const body = schema.parse(await c.req.json());
+  const uuid = v4();
+  const project = await prisma.project.create({
+    data: {
+      uuid,
+      ...body,
+    },
+  });
+  return c.json(project);
 });
 
 app.fire();
