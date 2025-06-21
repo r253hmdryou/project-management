@@ -5,7 +5,11 @@
     "prebuild": "node build.js",
     "build": "js-compute-runtime ./dist/index.js ./bin/main.wasm",
     "start": "fastly compute serve",
-    "deploy": "fastly compute publish"
+    "deploy": "fastly compute publish",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate:create": "prisma migrate dev --create-only --name",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
     "@fastly/js-compute": "^3.33.2",
