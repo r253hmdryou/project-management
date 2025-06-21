@@ -1,3 +1,4 @@
+import { serve } from "@hono/node-server";
 import { Hono } from "hono/quick";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
@@ -39,4 +40,12 @@ app.post("/projects", async (c) => {
   return c.json(project);
 });
 
-app.fire();
+serve(
+  {
+    fetch: app.fetch,
+    port: 39605,
+  },
+  (info) => {
+    console.log(`Server is running on http://localhost:${info.port}`);
+  }
+);

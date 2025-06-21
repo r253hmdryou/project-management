@@ -2,24 +2,24 @@
   "name": "backend",
   "type": "module",
   "scripts": {
-    "prebuild": "node build.js",
-    "build": "js-compute-runtime ./dist/index.js ./bin/main.wasm",
-    "start": "fastly compute serve",
-    "deploy": "fastly compute publish",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate:create": "prisma migrate dev --create-only --name",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
-    "@fastly/js-compute": "^3.33.2",
+    "@hono/node-server": "^1.14.4",
     "@prisma/client": "^6.10.1",
     "hono": "^4.8.2",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@fastly/cli": "^11.0.0",
-    "esbuild": "^0.25.1",
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3",
     "prisma": "^6.10.1"
   }
 }
