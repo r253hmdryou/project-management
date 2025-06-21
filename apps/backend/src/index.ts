@@ -3,6 +3,7 @@ import { Hono } from "hono/quick";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { v4 } from "uuid";
+import { conflictException } from "./libs/exception.js";
 
 const app = new Hono();
 const prisma = new PrismaClient();
@@ -30,6 +31,14 @@ app.post("/projects", async (c) => {
     instruction: z.string().default(""),
   });
   const { name, key, instruction } = schema.parse(await c.req.json());
+
+  if (await prisma.project.findUnique({ where: { key } })) {
+    c.status(409);
+    return c.json(
+      conflictException(`Project with key "${key}" already exists.`)
+    );
+  }
+
   const uuid = v4();
   const project = await prisma.project.create({
     data: {
