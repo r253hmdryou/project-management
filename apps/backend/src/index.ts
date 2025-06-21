@@ -29,12 +29,14 @@ app.post("/projects", async (c) => {
     key: z.string().min(1).max(10),
     instruction: z.string().default(""),
   });
-  const body = schema.parse(await c.req.json());
+  const { name, key, instruction } = schema.parse(await c.req.json());
   const uuid = v4();
   const project = await prisma.project.create({
     data: {
       uuid,
-      ...body,
+      name,
+      key,
+      instruction,
     },
   });
   return c.json(project);
