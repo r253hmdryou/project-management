@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "type": "module",
+  "scripts": {
+    "prebuild": "node build.js",
+    "build": "js-compute-runtime ./dist/index.js ./bin/main.wasm",
+    "start": "fastly compute serve",
+    "deploy": "fastly compute publish"
+  },
+  "dependencies": {
+    "@fastly/js-compute": "^3.33.2",
+    "hono": "^4.8.2"
+  },
+  "devDependencies": {
+    "@fastly/cli": "^11.0.0",
+    "esbuild": "^0.25.1"
+  }
+}
