@@ -9,3 +9,12 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Project {
+  id          BigInt   @id @default(autoincrement())
+  uuid        String   @unique
+  name        String
+  instruction String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
