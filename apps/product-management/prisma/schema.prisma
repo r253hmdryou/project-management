@@ -25,7 +25,7 @@ model Product {
 model Document {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique
-  path        String   @unique
+  path        String
   name        String
   content     String
   instruction String
@@ -33,4 +33,6 @@ model Document {
   updatedAt   DateTime @default(now()) @updatedAt
   productId   Int
   product     Product  @relation(fields: [productId], references: [id])
+
+  @@unique([path, productId])
 }
