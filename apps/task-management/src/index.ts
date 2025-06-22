@@ -1,6 +1,9 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono/quick";
-import { PrismaClient } from "@prisma/client";
+import {
+  PrismaClient,
+  type Project,
+} from "../prisma/generated/client/index.js";
 import { z } from "zod";
 import { v4 } from "uuid";
 import { conflictException } from "./libs/exception.js";
@@ -48,8 +51,16 @@ app.post("/projects", async (c) => {
       instruction,
     },
   });
-  return c.json(project);
+  return c.json(toProjectResponse(project));
 });
+
+function toProjectResponse(project: Project) {
+  return {
+    uuid: project.uuid,
+    key: project.key,
+    instruction: project.instruction,
+  };
+}
 
 serve(
   {

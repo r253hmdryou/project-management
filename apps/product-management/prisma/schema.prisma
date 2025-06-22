@@ -11,12 +11,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Project {
+model Product {
+  id          Int        @id @default(autoincrement())
+  uuid        String     @unique
+  key         String     @unique
+  name        String
+  instruction String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now()) @updatedAt
+  Document    Document[]
+}
+
+model Document {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique
-  key         String   @unique
+  path        String   @unique
   name        String
+  content     String
   instruction String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
+  productId   Int
+  product     Product  @relation(fields: [productId], references: [id])
 }
