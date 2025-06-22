@@ -1,5 +1,5 @@
 {
-  "name": "task-management",
+  "name": "product-management",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
