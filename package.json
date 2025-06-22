@@ -18,7 +18,7 @@
   "homepage": "https://github.com/r253hmdryou/project-management#readme",
   "description": "",
   "workspaces": [
-    "apps/backend"
+    "apps/task-management"
   ],
   "dependencies": {
     "zod": "^3.25.67"

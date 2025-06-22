@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "task-management",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
