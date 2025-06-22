@@ -49,7 +49,6 @@ app.post("/products", async (c) => {
 
 function toProductResponse(product: Product) {
   return {
-    uuid: product.uuid,
     name: product.name,
     key: product.key,
     instruction: product.instruction,

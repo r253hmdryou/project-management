@@ -56,7 +56,7 @@ app.post("/projects", async (c) => {
 
 function toProjectResponse(project: Project) {
   return {
-    uuid: project.uuid,
+    name: project.name,
     key: project.key,
     instruction: project.instruction,
   };
